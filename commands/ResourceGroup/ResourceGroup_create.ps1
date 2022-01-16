@@ -1,20 +1,19 @@
 ################################################################
-#SIGN IN TO AZURE :
+#LIST OF ALL LOCATIONS :
 
-az login
+#az account list-locations -o table
 
 
 ################################################################
 #LIST OF ALL LOCATIONS :
 
-az account list-locations -o table
+#az resource list --location $MyLocation
 
 
 ################################################################
 #CREATE A RESOURCE GROUP :
- 
-az group create --name resource-group-west --location westus2
 
+az group create --name $ResourceGroupName --location $MyLocation
 
 
 

@@ -1,10 +1,4 @@
 ################################################################
-#SIGN IN TO AZURE :
-
-az login
-
-
-################################################################
 #CREATE SQL SERVER :
 
 az sql server create \
@@ -40,36 +34,22 @@ ipconfig
 
 #Create clientIp firewall rule
 az sql server firewall-rule create \
--g resource-group-west \
--s hello-world-server \
--n clientip \
---start-ip-address <PUBLIC-IP-ADDRESS> \
---end-ip-address <PUBLIC_IP_ADDRESS> \
---verbose
+    -g resource-group-west \
+    -s hello-world-server \
+    -n clientip \
+    --start-ip-address <PUBLIC-IP-ADDRESS> \
+    --end-ip-address <PUBLIC_IP_ADDRESS> \
+    --verbose
 
 #create the database itself
 az sql db create \
---name hello-world-db \
---resource-group resource-group-west \
---server hello-world-server \
---tier Basic \
---verbose
+    --name hello-world-db \
+    --resource-group resource-group-west \
+    --server hello-world-server \
+    --tier Basic \
+    --verbose
 
 
-################################################################
-#DELETE RESOURCES :
 
-#Delete DB
-az sql db delete \
---name hello-world-db \
---resource-group resource-group-west \
---server hello-world-server \
---verbose
-
-#Delete SQL Server
-az sql server delete \
---name hello-world-server \
---resource-group resource-group-west \
---verbose
 
 
