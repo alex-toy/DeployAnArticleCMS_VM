@@ -1,0 +1,27 @@
+################################################################
+#DEPLOYING TO THE VM :
+
+cd /path/to/app
+
+sudo apt-get -y update && sudo apt-get -y install nginx python3-venv
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install --upgrade pip 
+pip install -r requirements.txt
+
+cd /etc/nginx/sites-available
+sudo unlink /etc/nginx/sites-enabled/default
+sudo vim reverse-proxy.conf
+
+# add content of nginx.txt
+
+sudo ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
+sudo service nginx restart
+
+cd /path/to/web
+python application.py
+
+#In a web browser, we can visit the public IP address. Type "exit" to disconnect from the VM

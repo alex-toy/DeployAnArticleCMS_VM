@@ -1,6 +1,26 @@
 import os
+from pathlib import Path
+import configparser
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+p1 = Path(os.path.abspath(os.curdir)).parent
+file_path = "/home/alexadmin/starter/var.cfg"
+file_path = file_path if os.access(file_path, os.R_OK) else "app\\var.cfg"
+p2 = Path(file_path)
+config_path = os.path.join(p1, p2)
+config = configparser.ConfigParser()
+config.read_file(open(config_path))
+
+
+def getConnectionString():
+    server = f"{config['SQL']['SQL_SERVER']}.database.windows.net" 
+    database = config['SQL']['SQL_DATABASE']
+    username = config['SQL']['SQL_USER_NAME']
+    password = config['SQL']['SQL_PASSWORD'] 
+    driver= '{ODBC Driver 17 for SQL Server}'
+    connection_string = 'DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password
+    return connection_string
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
