@@ -1,0 +1,3 @@
+#comment
+az login
+#comment
