@@ -13,6 +13,8 @@ az group create --name $RGName --location $RGLocation
 
 ."commands\SQLServer\SQLServer_create.ps1"
 
+."commands\AD_credentials.ps1"
+
 ."commands\StorageAccount\StorageAccount_create.ps1"
 
 ."commands\StorageAccount\StorageAccount_keys.ps1"
